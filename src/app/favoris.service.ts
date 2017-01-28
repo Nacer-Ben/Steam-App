@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 
-const KEY: string = 'FAV';
+const KEY: string = 'B.NACER-FAV-Copyright';
 
 @Injectable()
 export class FavorisService {
