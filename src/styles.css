@@ -1,0 +1,4 @@
+/* You can add global styles to this file, and also import other style files */
+h1, h2, h3, p, a, li {
+  font-family: 'Montserrat', sans-serif !important;
+}

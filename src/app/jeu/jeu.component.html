@@ -1,0 +1,121 @@
+<div class="container">
+  <h3 class="text-center">Bibliothèque de jeux</h3>
+
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <form (submit)="searchGame($event);">
+        <div class="form-group">
+          <input class="form-control" type="text" [(ngModel)]="search" name="research"
+                 placeholder="Entrez votre recherche..."/>
+        </div>
+      </form>
+      <p class="text-center"><em>Testez cette merveilleuse barre de recherche en tapant une catégorie par exemple:
+        platform ;
+        racing ; puzzle; shooter ... Ou le nom d'un jeu.</em></p>
+    </div>
+  </div>
+
+  <div class="row result-row">
+    <div *ngIf="searchCatResult" class="col-md-6 cat-search">
+      <h4 class="text-center"> Recherche par catégorie:</h4>
+
+      <p *ngFor="let cat of searchCatResult">
+        {{cat.name}} -
+        <a href="" [routerLink]="['/les-jeux', cat.id]">Voir plus</a>
+
+      </p>
+    </div>
+
+
+    <div class="col-md-6" *ngIf="searchResult">
+      <h4 class="text-center"> Recherche par nom:</h4>
+      <p *ngFor="let result of searchResult">
+        {{result.name}} -
+
+        <a href="" [routerLink]="['/les-jeux', result.id]">Voir plus</a>
+
+      </p>
+
+    </div>
+  </div>
+
+  <div class="row">
+    <hr>
+    <div class="col-md-6">
+
+      <h4 class="text-center">Tous les jeux: </h4>
+
+      <table class="table">
+
+        <thead>
+
+        <tr>
+          <th>Titre du jeu</th>
+          <th class="text-center">Favoris</th>
+        </tr>
+
+        </thead>
+
+        <tbody *ngFor="let game of games | paginate: {itemsPerPage: 5, currentPage: page}">
+
+        <tr>
+          <td><a href="" [routerLink]="['/les-jeux', game.id]">{{game.name}}</a></td>
+          <td class="text-center fav-icon">
+            <i class="fa fa-heart" *ngIf="gameOnFav(game)"></i>
+            <button class="btn btn-primary btn-xs" *ngIf="!gameOnFav(game)" (click)="addFav(game)">Ajouter aux favoris
+            </button>
+          </td>
+        </tr>
+
+        </tbody>
+
+      </table>
+
+      <div>
+        <pagination-controls previousLabel="Précédent"
+                             nextLabel="Suivant"
+                             (pageChange)="page = $event">
+        </pagination-controls>
+      </div>
+
+    </div>
+
+
+    <div class="col-md-6 favoris">
+      <h4 class="text-center">Mes jeux favoris:</h4>
+
+      <p class="text-center">
+        <em>Ceux-ci sont sauvegardés, donc ne vous inquiétez pas vous pouvez quitter cette page et
+          revenir plus tard...</em>
+      </p>
+
+      <table class="table">
+
+        <thead>
+        <tr>
+          <th>Titre du jeu</th>
+          <th class="text-center">Gestion des favoris</th>
+        </tr>
+        </thead>
+        <tr *ngIf="!gameFav[0]">
+          <td>Vous n'avez ajouté aucun jeu pour le moment...</td>
+        </tr>
+        <tbody *ngFor="let jeu of gameFav">
+
+        <tr>
+          <td><a href="" [routerLink]="['/les-jeux', jeu.id]">{{jeu.name}} </a></td>
+          <td class="text-center">
+            <button class="btn btn-danger btn-xs" (click)="deleteGameFav(jeu)">
+              Supprimer des favoris
+            </button>
+          </td>
+        </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+  </div>
+  <hr>
+</div>

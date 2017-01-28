@@ -1,0 +1,19 @@
+<div class="container">
+
+  <div class="row">
+
+    <div class="col-md-10 col-md-offset-1">
+      <h1 class="text-center" style="text-decoration: underline;">{{test.name}}</h1>
+
+      <img [src] = "urlCover" class="img-responsive img-thumbnail center-block"/>
+
+
+      <h3>Description du jeu:</h3><p>{{test.summary}} <em *ngIf="!test.summary">Le jeu ne possède pas de description</em></p>
+
+      <h3>Autres images:</h3>
+      <img [src] = "urlScreen1" class="img-responsive img-thumbnail "/>
+      <img [src] = "urlScreen2" class="img-responsive img-thumbnail "/>
+    </div>
+  </div>
+<hr>
+</div>

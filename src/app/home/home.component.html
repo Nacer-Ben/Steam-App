@@ -1,0 +1,36 @@
+<div class="container">
+
+  <div class="row welcome">
+
+    <div class="col-md-12">
+      <h1 class="text-center">Bienvenue sur notre nouvelle plateforme</h1>
+
+      <div class="col-md-6 col-md-offset-3">
+        <p class="text-center">Ici vous pourrez vous divertir en visitant notre grande bibliothèque de jeux, mais aussi en ajoutant certains
+          jeux dans vos favoris afin de ne jamais les perdre</p>
+        <hr>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="row">
+
+    <div class="col-md-10 col-md-offset-1">
+      <h3 class="text-center">Découvrez nos 3 derniers jeux vedettes !</h3>
+
+      <div *ngFor="let game of games | slice:0:3">
+
+        <div class="col-md-4">
+          <a class="text-center" href="" [routerLink]="['/les-jeux', game.id]">
+            <img class="img-responsive img-thumbnail center-block" [src]="games[game.id - 1].cover.url">
+            <h4>{{game.name}}</h4>
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+</div>
